@@ -40,8 +40,11 @@ JWT_SECRET=troque-por-uma-string-grande-e-aleatoria
 NEXTAUTH_SECRET=troque-por-uma-string-grande-e-aleatoria
 NEXTAUTH_URL=http://localhost:3000
 GOOGLE_BOOKS_API_KEY=
+REGISTER_INVITE_CODE="troque_este_codigo"
 NODE_ENV=production
 ```
+
+`REGISTER_INVITE_CODE` protege a tela `/register`. Use um codigo longo, aleatorio, e compartilhe apenas com quem pode criar conta. Nunca commite `.env`.
 
 ## Rodando com Docker Compose
 
@@ -96,6 +99,27 @@ Usuarios do seed:
 
 - `ana@example.com` / `manga123`
 - `leo@example.com` / `manga123`
+
+## Registro com convite
+
+A tela `/register` permite criar conta apenas com `REGISTER_INVITE_CODE`.
+
+Localmente:
+
+```env
+REGISTER_INVITE_CODE="um-codigo-longo-e-secreto"
+```
+
+Na Vercel:
+
+1. Abra o projeto na Vercel.
+2. Va em Settings > Environment Variables.
+3. Adicione `REGISTER_INVITE_CODE` sem prefixo `NEXT_PUBLIC_`.
+4. Redeploy.
+
+Para criar a conta da esposa, configure o codigo, acesse `http://localhost:3000/register`, preencha nome, e-mail, senha forte e codigo de convite.
+
+O arquivo `.env` contem segredos e nao deve ser commitado.
 
 ## PostgreSQL local rapido
 

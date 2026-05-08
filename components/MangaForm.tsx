@@ -91,7 +91,7 @@ export function MangaForm({ manga }: { manga?: MangaFormInput }) {
   return (
     <form onSubmit={save} className="grid gap-5 lg:grid-cols-[1fr_280px]">
       <section className="grid gap-4">
-        {error ? <p className="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</p> : null}
+        {error ? <p className="rounded-lg border border-rose-500/20 bg-rose-500/10 px-3 py-2 text-sm text-rose-700 dark:text-rose-300">{error}</p> : null}
         <div className="grid gap-2">
           <label htmlFor="title">Titulo</label>
           <div className="flex gap-2">
@@ -129,14 +129,14 @@ export function MangaForm({ manga }: { manga?: MangaFormInput }) {
         <Button disabled={loading}>{loading ? "Salvando..." : "Salvar"}</Button>
       </section>
       <aside className="grid content-start gap-3">
-        <div className="aspect-[2/3] overflow-hidden rounded-md border border-line bg-white">
+        <div className="aspect-[2/3] overflow-hidden rounded-xl border border-line bg-surface shadow-soft">
           {form.coverUrl ? <img src={form.coverUrl} alt="" className="h-full w-full object-cover" /> : null}
         </div>
         {results.map((result, index) => (
           <button
             type="button"
             key={`${result.source}-${index}`}
-            className="grid grid-cols-[56px_1fr] gap-3 rounded-md border border-line bg-white p-2 text-left"
+            className="grid grid-cols-[56px_1fr] gap-3 rounded-xl border border-line bg-surface p-2 text-left transition hover:border-accent/60 hover:bg-surface-2"
             onClick={() =>
               setForm((current) => ({
                 ...current,
@@ -149,10 +149,10 @@ export function MangaForm({ manga }: { manga?: MangaFormInput }) {
               }))
             }
           >
-            <div className="aspect-[2/3] overflow-hidden rounded bg-stone-100">{result.coverUrl ? <img src={result.coverUrl} alt="" className="h-full w-full object-cover" /> : null}</div>
+            <div className="aspect-[2/3] overflow-hidden rounded-lg bg-surface-2">{result.coverUrl ? <img src={result.coverUrl} alt="" className="h-full w-full object-cover" /> : null}</div>
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold">{result.title}</p>
-              <p className="text-xs text-stone-500">{result.source}</p>
+              <p className="text-xs text-muted">{result.source}</p>
             </div>
           </button>
         ))}

@@ -4,18 +4,40 @@
 
 :root {
   color-scheme: light;
+  --color-bg: 42 33% 96%;
+  --color-surface: 0 0% 100%;
+  --color-surface-2: 40 27% 92%;
+  --color-text: 214 24% 16%;
+  --color-muted: 215 14% 43%;
+  --color-border: 35 18% 82%;
+  --color-primary: 173 80% 26%;
+  --color-danger: 345 80% 35%;
+}
+
+.dark {
+  color-scheme: dark;
+  --color-bg: 220 28% 8%;
+  --color-surface: 222 25% 12%;
+  --color-surface-2: 220 22% 17%;
+  --color-text: 210 28% 92%;
+  --color-muted: 215 16% 70%;
+  --color-border: 218 18% 24%;
+  --color-primary: 174 70% 42%;
+  --color-danger: 346 76% 57%;
 }
 
 body {
   min-height: 100vh;
-  background: #f7f4ef;
-  color: #1f2933;
+  background:
+    radial-gradient(circle at top left, hsl(var(--color-primary) / 0.12), transparent 34rem),
+    hsl(var(--color-bg));
+  color: hsl(var(--color-text));
 }
 
-input,
+input:not([type="checkbox"]),
 select,
 textarea {
-  @apply w-full rounded-md border border-line bg-white px-3 py-2 text-sm outline-none ring-accent/20 transition focus:ring-4;
+  @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink outline-none ring-accent/20 transition placeholder:text-muted/70 focus:border-accent focus:ring-4;
 }
 
 label {
@@ -25,4 +47,8 @@ label {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: hsl(var(--color-primary) / 0.25);
 }

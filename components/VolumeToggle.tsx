@@ -19,7 +19,7 @@ export function VolumeToggle({ id, name, checked, label }: { id: string; name: "
   }
 
   return (
-    <label className="flex items-center gap-2 text-sm font-normal">
+    <label className="flex items-center gap-2 text-sm font-normal text-muted">
       <input className="h-4 w-4 rounded border-line accent-teal-700" type="checkbox" checked={checked} disabled={pending} onChange={(event) => update(event.target.checked)} />
       {label}
     </label>

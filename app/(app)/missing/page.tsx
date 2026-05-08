@@ -23,8 +23,8 @@ export default async function MissingPage() {
   return (
     <div className="grid gap-5">
       <div>
-        <h1 className="text-2xl font-bold">Lista de compra</h1>
-        <p className="text-sm text-stone-600">{items.length} volumes faltantes</p>
+        <h1 className="text-3xl font-bold tracking-tight">Lista de compra</h1>
+        <p className="mt-1 text-sm text-muted">{items.length} volumes faltantes</p>
       </div>
       <MissingVolumePlanner items={items} />
     </div>

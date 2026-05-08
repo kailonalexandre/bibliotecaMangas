@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { Plus } from "lucide-react";
 import { ButtonLink } from "@/components/Button";
+import { EmptyState } from "@/components/EmptyState";
 import { MangaCard } from "@/components/MangaCard";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/auth";
@@ -30,18 +31,18 @@ export default async function DashboardPage({ searchParams }: { searchParams: Re
   });
 
   return (
-    <div className="grid gap-5">
+    <div className="grid gap-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Colecao</h1>
-          <p className="text-sm text-stone-600">{filtered.length} titulos encontrados</p>
+          <h1 className="text-3xl font-bold tracking-tight">Colecao</h1>
+          <p className="mt-1 text-sm text-muted">{filtered.length} titulos encontrados</p>
         </div>
         <ButtonLink href="/mangas/new">
           <Plus className="h-4 w-4" />
           Novo manga
         </ButtonLink>
       </div>
-      <form className="grid gap-3 rounded-md border border-line bg-white p-3 md:grid-cols-[1fr_160px_170px_150px_auto]">
+      <form className="grid gap-3 rounded-xl border border-line bg-surface p-3 shadow-soft md:grid-cols-[1fr_160px_170px_150px_auto]">
         <input name="q" placeholder="Titulo, autor ou editora" defaultValue={searchParams.q || ""} />
         <select name="status" defaultValue={searchParams.status || ""}>
           <option value="">Todos status</option>
@@ -61,11 +62,15 @@ export default async function DashboardPage({ searchParams }: { searchParams: Re
           <option value="read">Tudo lido</option>
           <option value="unread">Tem nao lido</option>
         </select>
-        <button className="rounded-md bg-ink px-4 py-2 text-sm font-semibold text-white">Filtrar</button>
+        <button className="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:opacity-90">Filtrar</button>
       </form>
-      <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-        {filtered.map((manga) => <MangaCard key={manga.id} manga={manga} />)}
-      </section>
+      {filtered.length ? (
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {filtered.map((manga) => <MangaCard key={manga.id} manga={manga} />)}
+        </section>
+      ) : (
+        <EmptyState title="Nenhum manga encontrado" description="Cadastre seu primeiro titulo ou ajuste os filtros para ver sua colecao." actionHref="/mangas/new" actionLabel="Novo manga" />
+      )}
     </div>
   );
 }

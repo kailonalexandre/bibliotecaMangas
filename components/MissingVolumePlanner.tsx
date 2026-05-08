@@ -61,9 +61,9 @@ export function MissingVolumePlanner({ items }: { items: MissingVolumeItem[] }) 
 
   return (
     <div className="grid gap-5">
-      <div className="grid gap-3 rounded-md border border-line bg-white p-3">
+      <div className="grid gap-3 rounded-xl border border-line bg-surface p-3 shadow-soft">
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
           <input className="pl-9" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Filtrar por local de compra..." />
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1">
@@ -77,13 +77,13 @@ export function MissingVolumePlanner({ items }: { items: MissingVolumeItem[] }) 
 
       <div className="grid gap-4">
         {grouped.map((group) => (
-          <section key={group.mangaId} className="rounded-md border border-line bg-white p-4">
+          <section key={group.mangaId} className="rounded-xl border border-line bg-surface p-4 shadow-soft">
             <h2 className="text-lg font-bold">{group.mangaTitle}</h2>
             <div className="mt-3 grid gap-2">
               {group.items.map((item) => {
                 const key = keyOf(item);
                 return (
-                  <article key={key} className="grid gap-2 rounded-md border border-stone-100 bg-stone-50 p-3 md:grid-cols-[96px_1fr_auto_auto] md:items-center">
+                  <article key={key} className="grid gap-2 rounded-xl border border-line bg-surface-2 p-3 md:grid-cols-[96px_1fr_auto_auto] md:items-center">
                     <div className="font-semibold">Volume {item.number}</div>
                     <input
                       value={values[key] ?? ""}
@@ -105,7 +105,7 @@ export function MissingVolumePlanner({ items }: { items: MissingVolumeItem[] }) 
             </div>
           </section>
         ))}
-        {!grouped.length ? <p className="rounded-md border border-line bg-white p-4 text-sm text-stone-600">Nenhum volume faltante encontrado.</p> : null}
+        {!grouped.length ? <p className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">Nenhum volume faltante encontrado.</p> : null}
       </div>
     </div>
   );
@@ -130,7 +130,7 @@ function FilterButton({ active, onClick, children }: { active: boolean; onClick:
     <button
       type="button"
       onClick={onClick}
-      className={`min-w-fit rounded-md border px-3 py-2 text-sm font-semibold transition ${active ? "border-accent bg-teal-50 text-accent" : "border-line bg-white text-stone-700 hover:bg-stone-50"}`}
+      className={`min-w-fit rounded-lg border px-3 py-2 text-sm font-semibold transition ${active ? "border-accent bg-accent/10 text-accent" : "border-line bg-surface text-muted hover:bg-surface-2 hover:text-ink"}`}
     >
       {children}
     </button>

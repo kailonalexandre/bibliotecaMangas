@@ -21,8 +21,8 @@ export default function LoginPage({ searchParams }: { searchParams: { error?: st
             <input id="password" name="password" type="password" defaultValue="manga123" required />
           </div>
           <button className="min-h-10 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white">Entrar</button>
-          <Link href="/register" className="text-center text-sm font-semibold text-accent hover:text-teal-800">
-            Criar conta com convite
+          <Link href="/register" className="inline-flex min-h-10 items-center justify-center rounded-md border border-line bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:bg-stone-50">
+            Registre-se
           </Link>
         </div>
       </form>

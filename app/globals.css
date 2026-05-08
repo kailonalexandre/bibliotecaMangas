@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  background: #f7f4ef;
+  color: #1f2933;
+}
+
+input,
+select,
+textarea {
+  @apply w-full rounded-md border border-line bg-white px-3 py-2 text-sm outline-none ring-accent/20 transition focus:ring-4;
+}
+
+label {
+  @apply text-sm font-medium text-ink;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}

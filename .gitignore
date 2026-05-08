@@ -1,0 +1,61 @@
+# Dependencies
+node_modules
+
+# Next.js / build outputs
+.next
+out
+dist
+build
+coverage
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files / secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Database dumps / local data
+*.sql
+*.dump
+*.backup
+*.sqlite
+*.sqlite3
+*.db
+postgres-data
+postgres_data
+pgdata
+
+# Keys / certificates / credentials
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+credentials.json
+service-account*.json
+
+# Docker local overrides
+docker-compose.override.yml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example

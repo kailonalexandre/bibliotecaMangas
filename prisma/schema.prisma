@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MangaStatus {
+  COLLECTING
+  COMPLETE
+  PAUSED
+  SOLD
+  WISHLIST
+}
+
+enum VolumeCondition {
+  NEW
+  USED
+  DAMAGED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Manga {
+  id            String        @id @default(cuid())
+  title         String        @unique
+  originalTitle String?
+  author        String?
+  publisher     String?
+  description   String?
+  coverUrl      String?
+  status        MangaStatus   @default(COLLECTING)
+  totalVolumes  Int?
+  notes         String?
+  volumes       MangaVolume[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([title])
+  @@index([author])
+  @@index([publisher])
+  @@index([status])
+}
+
+model MangaVolume {
+  id           String          @id @default(cuid())
+  mangaId      String
+  manga        Manga           @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+  number       Int
+  owned        Boolean         @default(false)
+  read         Boolean         @default(false)
+  borrowed     Boolean         @default(false)
+  borrowedTo   String?
+  purchaseDate DateTime?
+  purchaseSource String?
+  paidPrice    Decimal?        @db.Decimal(10, 2)
+  condition    VolumeCondition @default(NEW)
+  notes        String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  @@unique([mangaId, number])
+  @@index([owned])
+  @@index([purchaseSource])
+  @@index([read])
+  @@index([borrowed])
+}
